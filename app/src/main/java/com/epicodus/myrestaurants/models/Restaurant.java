@@ -16,6 +16,7 @@ public class Restaurant {
     double latitude;
     double longitude;
     List<String> categories = new ArrayList<>();
+    private String pushId;
 
     // empty constructor needed by the Parceler library:
     public Restaurant() {}
@@ -54,6 +55,11 @@ public class Restaurant {
         return imageUrl;
     }
 
+    public String getLargeImageUrl(String imageUrl) {
+        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+        return largeImageUrl;
+    }
+
     public List<String> getAddress() {
         return address;
     }
@@ -70,8 +76,9 @@ public class Restaurant {
         return categories;
     }
 
-    public String getLargeImageUrl(String imageUrl) {
-        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
-        return largeImageUrl;
-    }
+    public String getPushId() { return pushId; }
+
+    public void setPushId(String pushId) { this.pushId = pushId; }
+
+
 }
