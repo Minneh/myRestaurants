@@ -1,4 +1,4 @@
-package util;
+package com.epicodus.myrestaurants.util;
 
 /**
  * Created by minnehmugo on 11/06/2017.
