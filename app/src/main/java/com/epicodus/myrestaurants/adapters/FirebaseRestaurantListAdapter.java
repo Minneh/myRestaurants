@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by minnehmugo on 11/06/2017.
@@ -61,7 +62,7 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        })
+        });
     }
 
 //    comes from an interface included as part of the FirebaseRecyclerAdapter class.
@@ -82,6 +83,8 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
 //onItemMove() and onItemDismiss() override methods from the ItemTouchHelperAdapter interface.
     @Override
     public boolean onItemMove(int fromPosition, int toPosition){
+        Collections.swap(mRestaurants, fromPosition, toPosition);
+
 //        make other list items move to give way on drag
         notifyItemMoved(fromPosition, toPosition);
         return false;
@@ -89,6 +92,7 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
 
     @Override
     public void onItemDismiss(int position){
+        mRestaurants.remove(position);
 //         delete the dismissed item from Firebase
         getRef(position).removeValue();
     }
