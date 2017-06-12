@@ -38,11 +38,10 @@ public FirebaseRestaurantViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
         }
 
 public void bindRestaurant(Restaurant restaurant) {
-       mRestaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
+        mRestaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.restaurantNameTextView);
         TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
