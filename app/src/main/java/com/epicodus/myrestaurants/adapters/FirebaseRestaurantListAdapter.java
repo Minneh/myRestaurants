@@ -102,4 +102,20 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
 //         delete the dismissed item from Firebase
         getRef(position).removeValue();
     }
+
+    private void setIndexInFirebase() {
+        for (Restaurant restaurant : mRestaurants) {
+            int index = mRestaurants.indexOf(restaurant);
+            DatabaseReference ref = getRef(index);
+            restaurant.setIndex(Integer.toString(index));
+            ref.setValue(restaurant);
+        }
+    }
+
+    @Override
+    public void cleanup() {
+        super.cleanup();
+        setIndexInFirebase();
+        mRef.removeEventListener(mChildEventListener);
+    }
 }
