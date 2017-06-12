@@ -83,6 +83,9 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
 //onItemMove() and onItemDismiss() override methods from the ItemTouchHelperAdapter interface.
     @Override
     public boolean onItemMove(int fromPosition, int toPosition){
+//        We use Collections.swap() to update the order of our mRestaurants
+// ArrayList items passing in the ArrayList of items and the starting
+// and ending positions
         Collections.swap(mRestaurants, fromPosition, toPosition);
 
 //        make other list items move to give way on drag
@@ -92,6 +95,9 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
 
     @Override
     public void onItemDismiss(int position){
+//        call the remove() method on our ArrayList
+// of items in onItemDismiss() to remove the item
+// from mRestaurants at the given position.
         mRestaurants.remove(position);
 //         delete the dismissed item from Firebase
         getRef(position).removeValue();
