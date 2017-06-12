@@ -1,5 +1,7 @@
 package com.epicodus.myrestaurants.adapters;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -87,18 +89,32 @@ public void onCancelled(DatabaseError databaseError) {
 
     @Override
     public void onItemSelected() {
-        itemView.animate()
-                .alpha(0.7f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
+//        Code corresponding to programmatic animation
+//        itemView.animate()
+//                .alpha(0.7f)
+//                .scaleX(0.9f)
+//                .scaleY(0.9f)
+//                .setDuration(500);
+
+//      Code corresponding to XML animation
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_on);
+        set.setTarget(itemView);
+        set.start();
     }
 
     @Override
     public void onItemClear() {
-        itemView.animate()
-                .alpha(1f)
-                .scaleX(1f)
-                .scaleY(1f);
+//        Code corresponding to programmatic animation
+//        itemView.animate()
+//                .alpha(1f)
+//                .scaleX(1f)
+//                .scaleY(1f);
+
+        //      Code corresponding to XML animation
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_off);
+        set.setTarget(itemView);
+        set.start();
     }
 }
